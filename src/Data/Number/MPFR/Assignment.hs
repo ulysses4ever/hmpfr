@@ -28,7 +28,10 @@ import Foreign.Storable (sizeOf)
 #ifdef INTEGER_GMP
 --import GHC.Integer.GMP.Internals
 import GHC.Float
+import GHC.Integer.Logarithms (integerLogBase#)
 #endif
+
+import GHC.Int ( Int(I#) )
 
 set     :: RoundMode -> Precision -> MPFR -> MPFR
 set r p = fst . set_ r p
@@ -151,7 +154,7 @@ bitsInPositive (Some _ rest) =
 sizeofInt :: (Num a) => a 
 sizeofInt = fromIntegral $ sizeOf (0 :: Int) -- in bytes
 #else
-bitsInInteger = fromIntegral . GHC.Float.integerLogBase 2
+bitsInInteger x = fromIntegral (I# (integerLogBase# 2 x))
 #endif
 
 compose             :: RoundMode -> Precision -> (Integer, Int) -> MPFR 

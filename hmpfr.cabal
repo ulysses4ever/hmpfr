@@ -44,7 +44,7 @@ Library
      build-Depends:    integer-simple
      cpp-options: -DINTEGER_SIMPLE
   else
-     build-Depends:    integer-gmp >= 1.0 && < 1.1
+     build-Depends:    integer-gmp >= 1.0 && < 1.2
      cpp-options: -DINTEGER_GMP
 
   Exposed-modules:
